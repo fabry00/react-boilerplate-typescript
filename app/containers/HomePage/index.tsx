@@ -32,6 +32,7 @@ import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 import { RootState } from './types';
+import BaseLayout from 'components/BaseLayout';
 
 // tslint:disable-next-line:no-empty-interface
 interface OwnProps {}
@@ -69,46 +70,48 @@ export class HomePage extends React.PureComponent<Props> {
     };
 
     return (
-      <article>
-        <Helmet>
-          <title>Home Page</title>
-          <meta
-            name="description"
-            content="A React.js Boilerplate application homepage"
-          />
-        </Helmet>
-        <div>
-          <CenteredSection>
-            <H2>
-              <FormattedMessage {...messages.startProjectHeader} />
-            </H2>
-            <p>
-              <FormattedMessage {...messages.startProjectMessage} />
-            </p>
-          </CenteredSection>
-          <Section>
-            <H2>
-              <FormattedMessage {...messages.trymeHeader} />
-            </H2>
-            <Form onSubmit={this.props.onSubmitForm}>
-              <label htmlFor="username">
-                <FormattedMessage {...messages.trymeMessage} />
-                <AtPrefix>
-                  <FormattedMessage {...messages.trymeAtPrefix} />
-                </AtPrefix>
-                <Input
-                  id="username"
-                  type="text"
-                  placeholder="mxstbr"
-                  value={this.props.username}
-                  onChange={this.props.onChangeUsername}
-                />
-              </label>
-            </Form>
-            <ReposList {...reposListProps} />
-          </Section>
-        </div>
-      </article>
+      <BaseLayout>
+        <article>
+          <Helmet>
+            <title>Home Page</title>
+            <meta
+              name="description"
+              content="A React.js Boilerplate application homepage"
+            />
+          </Helmet>
+          <div>
+            <CenteredSection>
+              <H2>
+                <FormattedMessage {...messages.startProjectHeader} />
+              </H2>
+              <p>
+                <FormattedMessage {...messages.startProjectMessage} />
+              </p>
+            </CenteredSection>
+            <Section>
+              <H2>
+                <FormattedMessage {...messages.trymeHeader} />
+              </H2>
+              <Form onSubmit={this.props.onSubmitForm}>
+                <label htmlFor="username">
+                  <FormattedMessage {...messages.trymeMessage} />
+                  <AtPrefix>
+                    <FormattedMessage {...messages.trymeAtPrefix} />
+                  </AtPrefix>
+                  <Input
+                    id="username"
+                    type="text"
+                    placeholder="mxstbr"
+                    value={this.props.username}
+                    onChange={this.props.onChangeUsername}
+                  />
+                </label>
+              </Form>
+              <ReposList {...reposListProps} />
+            </Section>
+          </div>
+        </article>
+      </BaseLayout>
     );
   }
 }
